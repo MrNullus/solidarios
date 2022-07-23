@@ -21,6 +21,9 @@
 					<a href="index.php">Home</a>
 					<?php  
 						session_start();
+						if (empty($_SESSION['logged'])) {
+							$_SESSION['logged']=0;
+						}
 						if ($_SESSION['logged']==1) {
 							header("location: index.php");
 						}

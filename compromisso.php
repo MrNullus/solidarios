@@ -21,6 +21,9 @@
 					<a href="index.php">Home</a>
 					<?php  
 						session_start();
+						if (empty($_SESSION['logged'])) {
+							$_SESSION['logged']=0;
+						}
 						if (!$_SESSION['logged']==1) {
 							header("location: login.php");
 						}
@@ -42,18 +45,20 @@
 				</div>
 			</header>
 			<div id="lipsum"> 
-				<!--
+				
 				<center>
 					<img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e2843fb5e9de49b68304d1849b92829d/animated/light/3.0"/><br/>
 					Essa página está em Manutenção
 				</center>
-				-->
+				
+				<!--
 				<div id="dr" style="width: 90%; margin-right: auto; margin-left: auto;">
 					<center>
 					<a href="doar.php"><img  style="text-align: left; height: 200px;" src="imagens/doar.png"></a>
 					<a href="receber.php"><img  style="text-align: right; height: 200px;" src="imagens/receber.png"></a>
 					</center>
 				</div>
+			-->
 			</div>
 		</div>
 

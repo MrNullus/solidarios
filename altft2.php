@@ -20,6 +20,9 @@
 					<a href="index.php">Home</a>
 					<?php  
 						session_start();
+						if (empty($_SESSION['logged'])) {
+							$_SESSION['logged']=0;
+						}
 						if (!$_SESSION['logged']==1) {
 							header("location: login.php");
 						}
@@ -50,6 +53,7 @@
 				echo $novonome="$nome.$ext";
 				move_uploaded_file($arquivo,'imgperfil/'.$novonome);
 				mysqli_query($conexao,"update usuario set imgperfil='$novonome' where nick='". $_SESSION['username'] ."'");
+				header("location: perfil.php");
 				?>
 			</div>
 		</div>

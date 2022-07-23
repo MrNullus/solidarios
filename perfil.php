@@ -21,6 +21,9 @@
 					<a href="index.php">Home</a>
 					<?php  
 						session_start();
+						if (empty($_SESSION['logged'])) {
+							$_SESSION['logged']=0;
+						}
 						if (!$_SESSION['logged']==1) {
 							header("location: login.php");
 						}
@@ -69,7 +72,7 @@
 												$email=$dados['email'];
 												$fixo=$dados['fixo'];
 												$cel=$dados['cel'];
-												$_SESSION['id_usuario'];
+												@$id_usuario=$_SESSION['id_usuario'];
 											}
 											if (!isset($nome)) {
 												echo "Nulo";
@@ -198,6 +201,7 @@
 					</div>
 				</div>
 				<?php
+				
 					include("conexao.php");
 					$consulta=mysqli_query($conexao,"select imgperfil from usuario where nick='". $_SESSION['username'] ."'");
 					while($dados=mysqli_fetch_array($consulta)){

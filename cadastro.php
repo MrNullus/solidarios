@@ -21,6 +21,9 @@
 					<a href="index.php">Home</a>
 					<?php  
 						session_start();
+						if (empty($_SESSION['logged'])) {
+							$_SESSION['logged']=0;
+						}
 						if ($_SESSION['logged']==1) {
 							header("location: index.php");
 						}
@@ -43,6 +46,9 @@
 			</header>
 			<div id="lipsum">
 				<?php 
+				if (empty($_SESSION['certo'])) {
+					$_SESSION['certo']="lorem";
+				}
 				if ($_SESSION['certo']=="errado") {
 					echo "<center><h1>Login já utilizado, por favor crie um diferente</h1></center>";
 				}

@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if (empty($_SESSION['logged'])) {
+	$_SESSION['logged']=0;
+}
 if (empty($_SESSION['logged']) || $_SESSION['logged'] == 0) {
 	echo"
 		<a href='login.php'>Login</a>

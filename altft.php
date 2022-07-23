@@ -25,15 +25,21 @@
 			</header>
 			<center>
 				<div id="fotop">
-					<?php
-					//colocar um if, se o usuario estiver sem login essa página redireciona pra fazer login
-					//$imglink="https://www.w3schools.com/howto/img_avatar.png";
-						if (empty($imglink)) {
-							echo "<img src='imagens/perfilbase.png' alt='Foto de perfil' id='fotoperfil'/>";
-						}else{
-							echo "<img src='$imglink' alt='Foto de perfil' id='fotoperfil'/>";
-						}
-					?>
+				<?php
+				
+					include("conexao.php");
+					$consulta=mysqli_query($conexao,"select imgperfil from usuario where nick='". $_SESSION['username'] ."'");
+					while($dados=mysqli_fetch_array($consulta)){
+						$imglink=$dados['imgperfil'];
+					}
+					if (!isset($imglink)) {
+						//$imglink="https://www.w3schools.com/howto/img_avatar.png";
+						echo "<img src='imagens/perfilbase.png' alt='Foto de perfil' id='fotoperfil'/>";
+					}else{
+						echo "<img src='imgperfil/",$imglink,"' id='fotoperfil' alt='fotoperfil'> ";
+						
+					}
+				?>
 					<hr style="width: 100px; border-style: solid; border-color: black;" />
 					Foto atual
 					<hr style="width: 100px; border-style: solid; border-color: black;" />

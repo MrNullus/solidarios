@@ -1,4 +1,5 @@
-altft= altera a imagem do perfil do usuario
+altft= espaço para o usuario enviar a nova imagem de perfil
+altft2= altera a foto de perfil do usuário e salva seu link no banco de dados
 altpro= altera a imagem do produto
 cadastro = página de cadastro
 cadastrot = tratamento dos dados enviados na página de cadastro
