@@ -1,0 +1,4 @@
+// Editor files ignore
+.history/*
+newrelic_agent.log
+.vscode/*
