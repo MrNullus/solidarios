@@ -1,12 +1,12 @@
 <?php 
 
 function prepare_query($sql, $find_array, $conn) {
-    $sql =  $conn->prepare($sql);
+    $stmt =  $conn->prepare($sql);
     
-    replace_values($sql, $find_array);
-    $sql->execute();
+    replace_values($stmt, $find_array);
+    $stmt->execute();
 
-    return $sql;
+    return $stmt;
 }
 
 ?>

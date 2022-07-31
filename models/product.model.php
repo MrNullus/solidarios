@@ -6,20 +6,14 @@ class Product {
 		$this->conn = $conn;
 	}
 
-	public function verify_product($name_product, $id_usuario) { 
+	public function verify_product($id_product) { 
 		$sql = 
-		"SELECT 
-			* 
-		FROM 
+		"SELECT * FROM 
 			produto 
-		WHERE 
-			nome = :nome AND 
-			id_usuario = :id_usuario
+		WHERE id = :id_product
 		";
 
-		$find_array = array(
-			":nome" => $name_product, ":id_usuario" => $id_usuario
-		);
+		$find_array = array(":id_product" => $id_product);
 
 		$sql = prepare_query($sql, $find_array, $this->conn);
 
@@ -75,13 +69,13 @@ class Product {
 	public function getProduct($id_product) {
 		$product = array();
 		$sql = "SELECT * FROM produto WHERE id = :id_product";
-		$find_array = array(":id_product", $id_product);
+		$find_array = array(":id_product" => $id_product);
 
 		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$product = $sql->fetchAll();
-			$product = array_unique($product[0]);
+			$product = del_redundance($product[0]);
 		}
 
 		return $product;

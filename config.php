@@ -20,6 +20,8 @@ try {
         'root', 
         ''
     );
+
+    global $pdo;
 } catch (PDOException $e) {
     echo "Error: ". $e->getMessage();
 }

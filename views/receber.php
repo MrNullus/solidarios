@@ -38,9 +38,7 @@
 		<main id="corpo">
 
 			<!--+++++++++++ lipsum +++++++++++-->
-			<div id="lipsum">
-				<?php require '../controllers/receber.controller.php' ?>
-			</div>
+			<?php require '../controllers/receber.controller.php' ?>
 			<!--+++++++++++ /lipsum +++++++++++-->
 			
 		</main>

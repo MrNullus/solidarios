@@ -51,7 +51,7 @@ class User {
 
 		if ($sql->rowCount() > 0) {
 			$id = $sql->fetch();
-			$id = del_redundance($id[0]);
+			$id = $id[0];
 		}
 		
 		return $id;
@@ -102,7 +102,7 @@ class User {
 		$user = array();
 
 		$sql = "SELECT * FROM usuario WHERE id_usuario = :id_usuario";
-		$find_array = array(":id_usuario", $id_usuario);
+		$find_array = array(":id_usuario" => $id_usuario);
 
 		$sql = prepare_query($sql, $find_array, $this->conn);
 

@@ -4,9 +4,9 @@ require '../minerva.lock.php';
 
 $user = new User($pdo);
 $user_logged = json_decode($_SESSION['user_logged']);
-$nickname = addslashes($user_logged->username);
+$id_usuario = addslashes($user_logged->id);
 
-if (isset($nickname)) {
+if (isset($id_usuario)) {
 	$data = $user->getUser($id_usuario);
 	$_SESSION['id_user'] = $data['id_usuario'];
 }
