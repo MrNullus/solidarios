@@ -13,6 +13,7 @@ spl_autoload_register(function($model) {
 });
 
 # @ Utils @
+require 'utils/prepare_query.utils.php';
 require 'utils/display_links.utils.php';
 require 'utils/replace_values.utils.php';
 require 'utils/handle_input_img.utils.php';
