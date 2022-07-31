@@ -15,8 +15,10 @@ $imglink = $user->getImgProfile($id_usuario);
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta charset="utf-8" />
 
-		<!--+++++++++++ icon +++++++++++-->
-		<link rel="icon" href="https://www.seekpng.com/png/full/222-2223215_cookies-biscoitos-bolacha-minecraft-comida-minecraft-cookie.png" />
+		<!--+++++++++++ favicon +++++++++++-->
+		<link rel="apple-touch-icon" href="./public/assets/imgs/favicon/touch-icon-iphone.png" />
+		<link rel="icon" sizes="16x16" href="./public/assets/imgs/favicon/favicon-16x16.png" />
+		<link rel="icon" sizes="32x32" href="./public/assets/imgs/favicon/favicon-32x32.png" />
 
 		<!--+++++++++++ google font +++++++++++-->
 		<!-- link -->
