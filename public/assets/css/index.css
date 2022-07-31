@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 body{
 	background: rgb(167,180,214);
 	background: linear-gradient(90deg, rgba(167,180,214,1) 0%, rgba(198,219,238,1) 100%);
 	color: black;
-	font-family: Berlin Sans FB Demi,verdana,arial;
+	font-family: 'Poppins', sans-serif;
 }
 form{
 	background: rgb(166,183,227);
