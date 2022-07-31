@@ -21,7 +21,7 @@ if (!empty($_POST)) {
             ":nick" => addslashes($_POST['user']),
             ":idade" => addslashes($_POST['idade']),
             ":cep" => addslashes($_POST['cep']),
-            ":end" => addslashes($_POST['end']),
+            ":ender" => addslashes($_POST['end']),
             ":mail" => addslashes($_POST['mail']),
             ":tel" => addslashes($_POST['tel']),
             ":cel" => addslashes($_POST['cel']),
