@@ -1,5 +1,4 @@
 <?php
-
 class User {
 	private $conn;
 
@@ -8,15 +7,21 @@ class User {
 	}
 
 	public function verify_user($nickname, $password) { 
-		$sql = "SELECT * FROM usuario WHERE nick = :nickname AND senha = :password";
-		$sql = $this->conn->prepare($sql);
+		$sql = 
+		"SELECT 
+			* 
+		FROM 
+			usuario
+		 WHERE 
+		 	nick = :nickname AND 
+			senha = :password";
+
 		$find_array = array(
 			":nickname" => $nickname,
 			":password" => $password
 		);
 
-		replace_values($sql, $find_array);
-		$sql->execute();
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			return true;
@@ -28,16 +33,21 @@ class User {
 	public function getId($nickname, $password) {
 		$id = null;
 
-		$sql = "SELECT id_usuario FROM usuario WHERE nick = :nickname AND senha = :password";
-		$sql = $this->conn->prepare($sql);
+		$sql = 
+		"SELECT 
+			id_usuario 
+		FROM 
+			usuario 
+		WHERE 
+			nick = :nickname AND 
+			senha = :password";
+
 		$find_array = array(
 			":nickname" => $nickname,
 			":password" => $password
 		);
 
-		replace_values($sql, $find_array);
-		$sql->execute();
-
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$id = $sql->fetch();
@@ -50,10 +60,14 @@ class User {
 	public function getImgProfile($id_usuario) {
 		$data = null;
 
-		$sql = "SELECT imgperfil FROM  usuario WHERE id_usuario = :id_usuario";
-		$sql = $this->conn->prepare($sql);
-		$sql->bindValue(":id_usuario", $id_usuario);
-		$sql->execute();
+		$sql = 
+		"SELECT imgperfil 
+			FROM  usuario 
+		WHERE id_usuario = :id_usuario
+		";
+		$find_array = array(":id_usuario", $id_usuario);
+
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$data = $sql->fetch();
@@ -63,16 +77,18 @@ class User {
 	}
 
 	public function setImgProfile($nickname, $new_img) {
-		$sql = "UPDATE usuario SET imgperfil = :new_img WHERE nick = :nickname";
-
-		$sql = $this->conn->prepare($sql);
+		$sql = 
+		"UPDATE 
+			usuario 
+		SET 
+			imgperfil = :new_img 
+		WHERE nick = :nickname
+		";
 		$find_array = array(
-			":nickname" => $nickname,
-			":new_img" => $new_img
+			":nickname" => $nickname, ":new_img" => $new_img
 		);
 
-		replace_values($sql, $find_array);
-		$sql->execute();
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			return true;
@@ -86,9 +102,9 @@ class User {
 		$user = array();
 
 		$sql = "SELECT * FROM usuario WHERE id_usuario = :id_usuario";
-		$sql = $this->conn->prepare($sql);
-		$sql->bindValue(":id_usuario", $id_usuario);
-		$sql->execute();
+		$find_array = array(":id_usuario", $id_usuario);
+
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$user = $sql->fetchAll();
@@ -101,20 +117,24 @@ class User {
 	public function setNewUser($arr_info = array()) {
 		$isNewUser = false;
 
-		$sql = "
-		INSERT INTO usuario 
-			(nome, nasc, cep, num, email, fixo, cel, senha,nick)	
+		$sql = 
+		"INSERT INTO usuario 
+			(
+				nome, nasc, cep, num, email, 
+				fixo, cel, senha, nick
+			)	
 		VALUES
-			(:nome, :idade, :cep, :end, :mail, :tel, :cel, :senha, :nick)
+			(
+				:nome, :idade, :cep, :ender, :mail, 
+				:tel, :cel, :senha, :nick
+			)
 		";
-		$sql = $this->conn->prepare($sql);
 
 		foreach ($arr_info as $key => $info) {	
 			$find_array[$key] = $info;
 		}
 
-		replace_values($sql, $find_array);
-		$sql->execute();
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$isNewUser = true;
