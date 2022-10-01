@@ -11,7 +11,7 @@ if ($user->setImgProfile($nickname, $new_img)) {
 	header("location: ".URL_BASE_LINK_VIEWS."perfil.php");
 	exit;	
 } else {
-	header("location: ".URL_BASE_LINK_VIEWS."alter_product.php");
+	header("location: ".URL_BASE_LINK_VIEWS."alter_image_product.php");
 	exit;	
 }
 

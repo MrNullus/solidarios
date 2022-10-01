@@ -1,5 +1,4 @@
 <?php  
-
 class Product {
 	private $conn;
 
@@ -7,16 +6,16 @@ class Product {
 		$this->conn = $conn;
 	}
 
-	public function verify_product($name_product, $id_usuario) { 
-		$sql = "SELECT * FROM produto WHERE nome = :nome AND id_usuario = :id_usuario";
-		$sql = $this->conn->prepare($sql);
-		$find_array = array(
-			":nome" => $name_product,
-			":id_usuario" => $id_usuario
-		);
+	public function verify_product($id_product) { 
+		$sql = 
+		"SELECT * FROM 
+			produto 
+		WHERE id = :id_product
+		";
 
-		replace_values($sql, $find_array);
-		$sql->execute();
+		$find_array = array(":id_product" => $id_product);
+
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			return true;
@@ -40,17 +39,24 @@ class Product {
 	public function getId($id_usuario, $data_validade, $imgperfil) {
 		$id = null;
 
-		$sql = "SELECT id FROM produto WHERE id_usuario = :id_usuario AND data_validade = :data_validade AND imgperfil = :imgperfil";
-		$sql = $this->conn->prepare($sql);
+		$sql = 
+		"SELECT 
+			id 
+		FROM 
+			produto 
+		WHERE 
+			id_usuario = :id_usuario AND 
+			data_validade = :data_validade AND 
+			imgperfil = :imgperfil
+		";
+
 		$find_array = array(
-                "id_usuario" => $id_usuario,
-                ":data_validade" => $data_validade,
-                ":imgperfil" => $imgperfil
-            );
+			"id_usuario" => $id_usuario,
+			":data_validade" => $data_validade,
+			":imgperfil" => $imgperfil
+		);
 
-		replace_values($sql, $find_array);
-		$sql->execute();
-
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$id = $sql->fetch();
@@ -62,58 +68,49 @@ class Product {
 
 	public function getProduct($id_product) {
 		$product = array();
-
 		$sql = "SELECT * FROM produto WHERE id = :id_product";
-		$sql = $this->conn->prepare($sql);
-		$sql->bindValue(":id_product", $id_product);
-		$sql->execute();
+		$find_array = array(":id_product" => $id_product);
+
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			$product = $sql->fetchAll();
-			$product = array_unique($product[0]);
+			$product = del_redundance($product[0]);
 		}
 
 		return $product;
 	}
 
 	public function setNewProduct($arr_info = array()) {
-		$isNewProduct = false;
-
-		$sql = "
-		INSERT INTO produto 
-			(nome, data_validade, imgperfil, descricao, doador, id_usuario)
-		VALUES
-			(:nome, :data_validade, :imgperfil, :descricao, :doador, :id_usuario)
-		";
-		$sql = $this->conn->prepare($sql);
-
 		foreach ($arr_info as $key => $info) {	
 			$find_array[$key] = $info;
 		}
 
-		replace_values($sql, $find_array);
-		$sql->execute();
+		$sql = 
+		"INSERT INTO produto 
+			(nome, data_validade, imgperfil, descricao, doador, id_usuario)
+		VALUES
+			(:nome, :data_validade, :imgperfil, :descricao, :doador, :id_usuario)";
+
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
-			$isNewProduct = true;
+			return true;
 		} else {
-			$isNewProduct = false;
+			return false;
 		}
-
-		return $isNewProduct;
 	}
 
 	public function setImgProfile($name_product, $new_img) {
-		$sql = "UPDATE produto SET imgperfil = :new_img WHERE nome = :name_product";
-
-		$sql = $this->conn->prepare($sql);
+		$sql = 
+		"UPDATE produto 
+			SET imgperfil = :new_img 
+		WHERE nome = :name_product";
 		$find_array = array(
-			":name_product" => $name_product,
-			":new_img" => $new_img
+			":name_product" => $name_product, ":new_img" => $new_img
 		);
 
-		replace_values($sql, $find_array);
-		$sql->execute();
+		$sql = prepare_query($sql, $find_array, $this->conn);
 
 		if ($sql->rowCount() > 0) {
 			return true;

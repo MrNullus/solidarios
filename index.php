@@ -10,9 +10,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta charset="utf-8" />
 
-		<!--+++++++++++ icon +++++++++++-->
-		<link rel="icon" href="https://www.seekpng.com/png/full/222-2223215_cookies-biscoitos-bolacha-minecraft-comida-minecraft-cookie.png" />
-
+		<!--+++++++++++ favicon +++++++++++-->
+		<link rel="apple-touch-icon" href="./public/assets/imgs/favicon/touch-icon-iphone.png" />
+		<link rel="icon" sizes="16x16" href="./public/assets/imgs/favicon/favicon-16x16.png" />
+		<link rel="icon" sizes="32x32" href="./public/assets/imgs/favicon/favicon-32x32.png" />
+		
 		<!--+++++++++++ google font +++++++++++-->
 		<!-- link -->
 		
@@ -25,7 +27,16 @@
 		/>
 		<link 
 			rel="stylesheet" 
-			href=<?php echo URL_BASE_CSS."carrousel.css"; ?> 
+			href="<?php echo URL_BASE_CSS."carrousel.css"; ?>"  
+		/>
+		<!--+++++++++++ link for OWL css files +++++++++++-->
+		<link 
+			rel="stylesheet" 
+			href="<?php echo URL_BASE_CSS."owl/owl.carousel.min.css"; ?>"
+		/>
+		<link 
+			rel="stylesheet" 
+			href="<?php echo URL_BASE_CSS."owl/owl.theme.default.min.css"; ?>"
 		/>
 	</head>
 
@@ -131,11 +142,19 @@
 		?>
 		<!--+++++++++++ /footer +++++++++++-->
 
+		<!--+++++++++++ link for lib JQUERY +++++++++++-->
+		<script 
+			src="<?php echo URL_BASE_LIBS.'jquery/jquery.min.js'; ?>">
+		</script>
+		<!--+++++++++++ link for lib OWL +++++++++++-->
+    	<script 
+			src="<?php echo URL_BASE_LIBS.'owl/owl.carousel.min.js'; ?>">
+		</script>
 		<!--+++++++++++ link for js files +++++++++++-->
 		<script 
-			src="<?php echo URL_BASE_JS.'carrousel.js'; ?>"
-		></script>
-		<!--+++++++++++ /link for js files +++++++++++-->
+			src="<?php echo URL_BASE_JS.'carrousel.js'; ?>">
+		</script>
+		
 
 	</body>
 

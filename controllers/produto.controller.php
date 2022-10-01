@@ -7,18 +7,18 @@ $product = new Product($pdo);
 if (isset($_GET['id']) && !empty($_GET['id'])) {
 	#= pegar dados do usuario =#
 	$user_logged = json_decode($_SESSION['user_logged']);
-	$id_usuario = addslashes($user_logged->id->id_usuario);
-	$nickname = addslashes($user_logged->username);
+	$id_usuario = addslashes($user_logged->id);
 	$data_user = $user->getUser($id_usuario);
 
 	#= pegar dados vindo da requisição =#
 	$id_product = addslashes($_GET['id']);
-	$name_product = addslashes($_GET['name']);
+	$name_product = addslashes($_GET['name']);	
 
 	#= verificação de produto =#
-	if ($product->verify_product($name_product, $id_usuario)) {
+	if ($product->verify_product($id_product)) {
 		#= pegar dados do produto referente ao id passado pelo param da URL 'id' =#
 		$data_product = $product->getProduct($id_product);
+		
 	} else {
 		$data_product = array();
 	}
@@ -152,9 +152,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	?>
 
 	<pre> 
-	<?php echo '
 	<a 
-		href="'.URL_BASE_LINK_VIEWS.'".alter_image_product.php?id="'.$data_product['id'].'&'.$data_product['nome'].'" id="altpro"> Alterar Imagem</a> <br/>
-	';?>
+		href="../views/alter_image_product.php?id=<?php echo $id_product; ?>" id="altpro"> Alterar Imagem
+	</a>
 	</pre>
 </div>
